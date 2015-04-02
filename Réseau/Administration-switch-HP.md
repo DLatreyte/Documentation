@@ -5,17 +5,26 @@
 #### Rétablir la configuration d’usine (s’il est possible de se connecter au switch)
 
 
-HP2910> enable	⇒ passage en mode manager.
-Password:********	⇒ mot de passe du manager.
-HP2910# erase startup-config	⇒ Remet le switch en configuration usine.
-Rétablir la configuration d’usine (s’il n’est pas possible de se connecter au switch)
+- `HP2910> enable` : passage en mode manager.
+- `Password:********`: mot de passe du manager.
+- `HP2910# erase startup-config` Remet le switch en configuration usine.
+
+
+#### Rétablir la configuration d’usine (s’il n’est pas possible de se connecter au switch)
+
+
 Appuyer sur le bouton Clear. Tout en maintenant ce bouton pressé, appuyer sur Reset. Relâcher Reset, puis Clear lorsque la diode verte s'allume.
-Redémarrer le switch
-HP2910 > enable	⇒ passage en mode manager.
-Password:********	⇒ mot de passe du manager.
-HP2910 > boot	⇒ redémarre en effectuant les tests de démarrage. Cette commande permet de choisir la partie de la ROM utilisée (voir Mise à jour du firmware).
-HP2910 > reload	⇒ redémarre le switch sans effectuer les tests de démarrage.
-Examiner la configuration du switch
+
+
+#### Redémarrer le switch
+
+- `HP2910 > enable` : passage en mode manager.
+- `Password:********` : mot de passe du manager.
+- `HP2910 > boot`: redémarre en effectuant les tests de démarrage. Cette commande permet de choisir la partie de la ROM utilisée (voir Mise à jour du firmware).
+- `HP2910 > reload` : redémarre le switch sans effectuer les tests de démarrage.
+
+
+### Examiner la configuration du switch
 HP2910 > enable	⇒ passage en mode manager.
 Password:********	⇒ mot de passe du manager.
 HP2910# show running-config	⇒ voir la configuration dans la RAM.
