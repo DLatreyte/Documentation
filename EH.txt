@@ -1,0 +1,12 @@
+# Notes sur le fonctionnement d'EH
+
+1. Bloquer la connexion à EH
+
+Pour les Professeurs : 
+> Profils > Menu
+
+Pour les parents et les élèves :
+> Extranet > Menus
+
+
+Dans tous les cas, tout décocher, sauf déconnexion

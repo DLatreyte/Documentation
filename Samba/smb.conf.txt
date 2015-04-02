@@ -1,0 +1,53 @@
+# Global parameters
+[global]
+unix charset = LOCALE
+workgroup = LONDON
+server string = Samba 3.0.20
+
+realm = LONDON.ABMAS.BIZ
+security = ADS
+
+allow trusted domains = No	# cette configuration ne peut fonctionner qu'avec 
+idmap backend = idmap_rid:KPAK=500-100000000 	# domaine. Pas de relation
+idmap uid = 500-100000000						# d'approbation possible
+idmap gid = 500-100000000
+
+winbind use default domain = Yes
+winbind enum users = No		# Pas de listing des utilisateurs
+winbind enum groups = No
+winbind nested groups = Yes
+winbind separator = +
+
+ldap ssl = no
+
+log level = 1
+syslog = 0
+log file = /var/log/samba/%m
+max log size = 50
+
+template primary group = "Domain Users"
+template shell = /bin/bash
+template shell = /bin/bash
+
+printing = cups
+printer admin = "KPAK\Domain Admins"
+printcap name = CUPS
+
+[homes]
+comment = Home Directories
+valid users = %S
+read only = No
+browseable = No
+
+[printers]
+comment = SMB Print Spool
+path = /var/spool/samba
+guest ok = Yes
+printable = Yes
+browseable = No
+
+[print$]
+comment = Printer Drivers
+path = /var/lib/samba/drivers
+admin users = root, Administrator
+write list = root

@@ -1,0 +1,75 @@
+Intégration d'un serveur membre Samba dans un domaine AD
+========================================================
+
+* Samba a-t-il été compilé avec les bonnes options ?
+cd /usr/sbin
+smbd -b | grep KRB
+smbd -b | grep LDAP
+
+* Installer la bibliothèque Kerberos
+
+* Effacer le fichier contenant les secrets partagés par Samba et le DC
+rm /etc/samba/secrets.tdb
+
+**Remarque : si tdbdump a été installé (pas essentiel), il est possible d'examiner ce fichier.
+tdbdump /etc/samba/secrets.tdb
+
+* Effacer les informations que Samba conserve en cache
+rm /var/lib/samba/*tdb
+
+* Créer le fichier de configuration de Samba
+vim /etc/samba/smbd.conf
+
+* Tester le fichier de configuration
+testparm -s | less
+
+* Modifier le fichier de contrôle de NSS
+vim /etc/nsswitch.conf
+
+	passwd: files winbind
+	shadow: files winbind
+	group : files winbind
+
+
+* Jonction au domaine
+net ads join -U Administrator%not24get
+
+* Test de la bonne jonction au domaine
+net ads testjoin
+
+* Démarrer Samba et winbind
+
+* Tests de dialogue entre Winbind et le DC
+wbinfo -u 
+wbinfo -g
+
+* Tester que l'authentification s'effectue bien
+getent passwd
+getent group
+
+* Vérifier que le dialogue entre Samba et le DC utiliser bien kerberos
+net ads info
+
+* Vérifier que le serveur Linux dialogue bien avec le DC
+net ads status -UAdministrator%nont24get
+
+* Examen des informations mises en cache par Winbind
+tdbdump /var/lib/samba/winbindd_idmap.tdb
+tdbdump /var/lib/samba/winbindd_cache.tdb
+
+
+Informations
+============
+* Utilité des directives : winbind enum users et winbind enum groups dans le fichier smb.conf ?
+	Permettre ou interdire la recherche et l'affichage de tous les utilisateurs ou groupes avec les commandes wbinfo -u wbinfo -g getent passwd getent group
+	Si la liste est trop longue (20 000) winbind peut prendre plusieurs minutes pour l'élaborer et être indisponible pour toute autre requête.
+	
+	Dans ce cas, il faut faire une recherche ciblée
+	getent passwd administrator
+	
+Signification de la directive idmap_rid ?
+Nouvelle méthode de mappage SID <-> UID/GID
+
+
+
+
