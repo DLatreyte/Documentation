@@ -1,7 +1,10 @@
 # Administration d'un switch HP
 
-Général
-Rétablir la configuration d’usine (s’il est possible de se connecter au switch)
+## Général
+
+#### Rétablir la configuration d’usine (s’il est possible de se connecter au switch)
+
+
 HP2910> enable	⇒ passage en mode manager.
 Password:********	⇒ mot de passe du manager.
 HP2910# erase startup-config	⇒ Remet le switch en configuration usine.
