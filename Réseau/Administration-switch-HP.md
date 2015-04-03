@@ -422,7 +422,7 @@ HP-Switch(Config)#show spanning-tree detail (Shows extended information on vlans
 ## Sauvegardes, gestion
 
 
-#### Activation de mode debug
+#### Activation du mode debug
 
 - `MONSWITCH> enable` : passage en mode manager.
 - `Password:********` : mot de passe du manager.
@@ -455,22 +455,27 @@ Le portable a pour IP 192.168.1.2. L’IP du switch est 192.168.1.3.
 - `MONSWITCH# exit` : sortir du menu configuration.
 
 #### Copier la configuration par tftp sur le switch
-MONSWITCH> enable	⇒ passage en mode manager.
-Password:********	⇒ mot de passe du manager.
-MONSWITCH# copy tftp startup-config 192.168.1.2 maconfig.txt	⇒ copie de la config maconfig.txt vers le switch.
-Device may be rebooted, do you want to continue [y/n]? y	⇒ répondre Yes.
-Rebooting switch...	⇒ reboot du switch.
-Déterminer la version du firmware utilisée (pour les deux parties de la ROM)
-HP2910 > enable	⇒ passage en mode manager.
-Password:********	⇒ mot de passe du manager.
-HP2910 > show flash	⇒ affiche les images système installées sur les deux parties de la ROM.
-HP2910 > show version	⇒ affiche l’image système en cours d’utilisation.
-Image stamp: /sw/code/build/fish(mf_v10_fishp)	⇒ Nom du firmware.
-May 11 2007 10:06:39	⇒ Date de publication du firmware.
-H.10.38	⇒ Version du firmware.
-575	⇒ Révision de la version.
-Boot Image: Primary
 
+- `MONSWITCH> enable` : passage en mode manager.
+- `Password:********` : mot de passe du manager.
+- `MONSWITCH# copy tftp startup-config 192.168.1.2 maconfig.txt` : copie de la config maconfig.txt vers le switch.
+- `Device may be rebooted, do you want to continue [y/n]? y` : répondre Yes.  
+`Rebooting switch...	⇒ reboot du switch.`
+
+
+#### Déterminer la version du firmware utilisée (pour les deux parties de la ROM)
+
+- `HP2910 > enable` : passage en mode manager.
+- `Password:********` : mot de passe du manager.
+- `HP2910 > show flash` : affiche les images système installées sur les deux parties de la ROM.
+- `HP2910 > show version` : affiche l’image système en cours d’utilisation.
+```
+Image stamp: /sw/code/build/fish(mf_v10_fishp)	⇒ Nom du firmware.
+May 11 2007 10:06:39					⇒ Date de publication du firmware.
+H.10.38									⇒ Version du firmware.
+575										⇒ Révision de la version.
+Boot Image: Primary
+```
 
 #### Mettre à jour le firmware
 
