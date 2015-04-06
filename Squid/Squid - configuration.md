@@ -2,7 +2,7 @@
 
 
 
-
+--
 ## Configuration des informations réseau
 
 
@@ -110,7 +110,7 @@ append_domain .corot.local
 
 
 
-
+--
 ## Configuration du contrôle d'accès
 
 Le contrôle d'accès permet d'autoriser ou de refuser les utilisateurs en fonction de leur adresse IP, des plages horaires, de leur groupe, ...
@@ -211,6 +211,12 @@ acl port_srv_cache myport 3128
 acl heures_bureau time MT W H F 9:00-17:00
 ```
 
+En fait la syntaxe est la suivante : 
+```
+acl nom_acl time [Days] [H1:M1-H2:M2]
+```
+Les jours sont définis ainsi : Lundi (M), Mardi (T), Mercredi (W), Jeudi (H), Vendredi (F), Samedi (A) et Dimanche (S). La lettre D déclare tous les jours de la semaine.
+
 **Remarque :** Par défaut, Squid définit des ACL pour les plages d'adresses non routables et pour les ports « surs ».
 
 
@@ -295,3 +301,41 @@ http_access deny client_reseau_src domaine_interdit
 http_access allow client_reseau_src
 http_access deny all
 ```
+
+
+### Conclusion de la partie « Configuration du contrôle d'accès »
+
+3 sous-réseaux et quelques règles spécifiques :
+
+```
+acl pole_chimie src 10.10.0.0/16
+acl administratif 192.168.1.0/28
+acl informatique src 192.168.2.0/28
+
+acl heures_bureau time MTWH 07:30-19:30
+acl jours_chimie time MTWHF
+
+acl proto_ftp proto FTP
+
+acl sites_interdits url_regex -i sexe violent
+acl audio-video urlpath_regex -i \.(mp3|mp4|wav|flv|avi|mov|wma)$
+
+[...] # ACL par défaut (en particulier, celles sur les ports).
+
+http_access deny pole_chimie sites_interdits
+http_access deny pole_chimie audio-video
+http_access deny administratif sites_interdits
+http_access deny administratif audio-video
+http_access deny administratif proto_ftp
+http_access allow pole_chimie jours_chimie
+http_access allow administratif heures_bureau
+http_access allow informatique
+http_access allow localnet
+http_access allow localhost
+http_access deny all
+```
+
+--
+## Le stockage des objets
+
+
