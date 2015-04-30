@@ -9,7 +9,7 @@ Il est donc plus pratique de travailler en étant adminstrateur (root) de la mac
 * Ouvrir une fenêtre terminal.
 
 * Le compte root n'est pas utilisable directement tant qu'aucun mot de passe ne lui ait été attribué :
-```
+```bash
 sudo passwd root
 ```
 Choisir le mot de passe.
@@ -31,16 +31,23 @@ La compilation de *pygame* nécessite l'installation préalable de dépendances.
 
 ```
 port selfupdate
+
 port install libsdl2 libsdl_image libsdl_mixer libsdl_ttf
+
 port install portmidi
+
 port install smpeg
+
 port install mercurial
+
 port install py34-pip
 ```
 
 **Remarque :** pour vérifier que la SDL est bien installée : 
 
-	port install SDLInvaders
+```
+port install SDLInvaders
+```
 	
 et lancer le programme `SDLInvaders` depuis le terminal.
 
@@ -72,6 +79,7 @@ export ARCHFLAGS='-arch x86_64'
 Dans le dossier personnel de l'utilisateur `root`, écrire le fichier caché `.bash_profile` contenant les lignes suivantes (il est possible de copier le fichier qui se trouve dans le dossier personnel de l'utilisateur qui a installé MacPorts) : 
 ```
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
 export MANPATH=/opt/local/share/man:$MANPATH
 ```
 
