@@ -12,12 +12,14 @@ Il est donc plus pratique de travailler en étant adminstrateur (root) de la mac
 ```bash
 sudo passwd root
 ```
+
 Choisir le mot de passe.
 
 * Devenir l'administrateur de la machine :
 ```
 su -
 ```
+
 Entrer le mot de passe.
 
 **Remarque :** le prompt ne doit plus contenir `$` mais `#`.
