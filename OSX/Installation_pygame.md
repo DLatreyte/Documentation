@@ -16,7 +16,7 @@ sudo passwd root
 Choisir le mot de passe.
 
 * Devenir l'administrateur de la machine :
-```
+```bash
 su -
 ```
 
